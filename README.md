@@ -21,8 +21,8 @@ Using typical parameter values of ..., each evaluation of the PIC algorithm take
 ## Functions
 
 [`movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFrameNum)`](../PIC/movie_run.m)
-| Parameters | Meaning |
-| --- | --- |
+| Parameter | Meaning |
+| ---- | ---- |
 | `DT` | Temporal step size |
 | `NT` | Number of temporal steps |
 | `NG` | Number of spatial gridpoints |
@@ -38,7 +38,7 @@ Using typical parameter values of ..., each evaluation of the PIC algorithm take
 
 ## Functions
 
-![Alt text](/relative/path/to/img.jpg?raw=true "title")
+![Alt text](/Landau_Maxwell/Results_LF_A0.5/SSP.png?raw=true "title")
 <!--- can use a branch with the examples to not clutter the main directory --->
 <!--- also potentially try embedding movies? --->
 
