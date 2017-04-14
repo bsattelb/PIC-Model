@@ -1,5 +1,15 @@
 # Table of Contents
 
+- [Introduction](#Introduction)
+- [General Usage](#General Usage)
+	- [Examples](#Examples)
+- [Particle-In-Cell Method](#Particle-In-Cell Method)
+	- [Functions](#Functions)
+	- [Examples](#Examples)
+- [Active Subspace Sensitivity Methods](#Active Subspace Sensitivity Methods)
+	- [Functions](#Functions)
+	- [Examples](#Examples)
+
 # Introduction
 
 This repository is meant to allow for active subspace sensitivity analysis of plasma dynamics using a particle-in-cell (PIC) method.
@@ -20,7 +30,7 @@ Using typical parameter values of ..., each evaluation of the PIC algorithm take
 
 ## Functions
 
-[`movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFrameNum)`](/PIC/movie_run.m)
+[`movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFrameNum)`](/+PIC/movie_run.m)
 
 | Parameter | Meaning |
 | ---- | ---- |
@@ -32,6 +42,21 @@ Using typical parameter values of ..., each evaluation of the PIC algorithm take
 | `params` | Parameters for the initilization of the distribution - the spatial length is assumed to come first |
 | `saveFrameNum` | Saves a .png file of the phase-space dynamics at every `saveFrameNum` temporal step (must be a multiple of `movieFrameNum`) |
 | `movieFrameNum` | Adds a frame to the .mp4 movie of phase-space dynamics at every `movieFrameNum` temporal step |
+
+Used to generate still images and movies of phase-space behavior.  Additionally generates plots of the behavior of energy using the second Fourier mode, L2 norm of the electric field, the kinetic energy, the potential energy, and the total energy.  Uses a [`histcn`](https://www.mathworks.com/matlabcentral/fileexchange/23897-n-dimensional-histogram#license_modal) function developed by Bruno Luong.
+
+
+[`movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFrameNum)`](/+PIC/movie_run.m)
+
+| Parameter | Meaning |
+| ---- | ---- |
+| `DT` | Temporal step size |
+| `NT` | Number of temporal steps |
+| `NG` | Number of spatial gridpoints |
+| `N` | Number of computational particles |
+| `distribution` | Name of the distribution - for use with functions in [`Initilization`](/+PIC/Initilization) and [`QOI_calc`](/+PIC/QOI_calc) |
+
+
 
 ## Examples
 
