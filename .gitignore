@@ -1,5 +1,11 @@
-*.png
+#*.png
 *.fig
 *.mat
 *.mp4
 *.pdf
+Landau_Lorentz/Old_Results_LF/
+Landau_Maxwell/Old_Results_LF/
+Landau_Maxwell/Old_Results_AS/
+Two_Stream/Old_Results_LF/
+Two_Stream_No_Variance/Old_Results_LF/
+Two_Stream_No_Variance/Old_Results_AS/

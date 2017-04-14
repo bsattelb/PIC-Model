@@ -18,14 +18,16 @@ min_vals(end) = -0.01;
 DT = 0.025;
 NT = 10/DT;
 NG = 128;
-N = 1e4;
+N = 1e6;
 
 PIC = PIC.PIC_setup(DT, NT, NG, N, 'Landau_Maxwell');
 
-h = 1e-6;
-Nsamples = 20;
+h = 1e-2;
+Nsamples = 15;
 
-[evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Sensitivity.Active_Subspaces(max_vals, min_vals, h, Nsamples, PIC, 'test_params', change);
+[evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = ...
+    Sensitivity.Active_Subspaces(max_vals, min_vals, h, Nsamples, PIC, ...
+    'test_params', change, 'Averaging', true, 'Atolerance', 1e-3);
 
 Sensitivity.plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
 
