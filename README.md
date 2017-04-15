@@ -1,14 +1,14 @@
 # Table of Contents
 
 - [Introduction](#Introduction)
-- [General Usage](#General Usage)
-	- [Examples](#Examples)
-- [Particle-In-Cell Method](#Particle-In-Cell Method)
-	- [Functions](#Functions)
-	- [Examples](#Examples)
-- [Active Subspace Sensitivity Methods](#Active Subspace Sensitivity Methods)
-	- [Functions](#Functions)
-	- [Examples](#Examples)
+- [General Usage](#general-usage)
+	- [Examples](#examples)
+- [Particle-In-Cell Method](#particle-in-cell-method)
+	- [Functions](#functions)
+	- [Examples](#examples-1)
+- [Active Subspace Sensitivity Methods](#active-subspace-sensitivity-methods)
+	- [Functions](#functions-1)
+	- [Examples](#examples-2)
 
 # Introduction
 
