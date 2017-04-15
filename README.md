@@ -38,15 +38,15 @@ Using typical parameter values of ..., each evaluation of the PIC algorithm take
 | `NT` | Number of temporal steps |
 | `NG` | Number of spatial gridpoints |
 | `N` | Number of computational particles |
-| `distribution` | Name of the distribution - for use with functions in [`Initilization`](/+PIC/Initilization) and [`QOI_calc`](/+PIC/QOI_calc) |
+| `distribution` | Name of the distribution - for use in determining which functions to use in the [`Initilization`](/+PIC/Initilization) and [`QOI_calc`](/+PIC/QOI_calc) folders |
 | `params` | Parameters for the initilization of the distribution - the spatial length is assumed to come first |
 | `saveFrameNum` | Saves a .png file of the phase-space dynamics at every `saveFrameNum` temporal step (must be a multiple of `movieFrameNum`) |
 | `movieFrameNum` | Adds a frame to the .mp4 movie of phase-space dynamics at every `movieFrameNum` temporal step |
 
-Used to generate still images and movies of phase-space behavior.  Additionally generates plots of the behavior of energy using the second Fourier mode, L2 norm of the electric field, the kinetic energy, the potential energy, and the total energy.  Uses a [`histcn`](https://www.mathworks.com/matlabcentral/fileexchange/23897-n-dimensional-histogram#license_modal) function developed by Bruno Luong.
+Used to generate still images and movies of phase-space behavior.  Additionally generates plots of the behavior of energy using the second Fourier mode, L2 norm of the electric field, the kinetic energy, the potential energy, and the total energy.  Uses a [`histcn`](https://www.mathworks.com/matlabcentral/fileexchange/23897-n-dimensional-histogram#license_modal) function developed by Bruno Luong.  Since maximum boundaries for the velocity are not known, an estimate is used - true values for the maximum and minimum are printed by the function to allow for hard-coded boundaries if this is inaccurate.
 
 
-[`movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFrameNum)`](/+PIC/movie_run.m)
+[`PIC_setup(DT, NT, NG, N, distribution)`](/+PIC/PIC_setup.m)
 
 | Parameter | Meaning |
 | ---- | ---- |
@@ -54,7 +54,9 @@ Used to generate still images and movies of phase-space behavior.  Additionally 
 | `NT` | Number of temporal steps |
 | `NG` | Number of spatial gridpoints |
 | `N` | Number of computational particles |
-| `distribution` | Name of the distribution - for use with functions in [`Initilization`](/+PIC/Initilization) and [`QOI_calc`](/+PIC/QOI_calc) |
+| `distribution` | Name of the distribution - for use in determining which functions to use in the [`Initilization`](/+PIC/Initilization) and [`QOI_calc`](/+PIC/QOI_calc) folders |
+
+Sets up various constant values for use in a PIC function.  Returns a PIC evaluator that accepts a parameter array for use in the initilization function in the [`Initilization`](/+PIC/Initilization) folder.  The length parameter is assumed to come first in this array.  The PIC evaluator returns a metric from the function related to the distribution in the [`QOI_calc`](/+PIC/QOI_calc) folder.
 
 
 
@@ -64,7 +66,7 @@ Used to generate still images and movies of phase-space behavior.  Additionally 
 
 ## Functions
 
-![Alt text](/Landau_Maxwell/Results_LF_A0.5/SSP.png?raw=true "title")
+![Image of the sufficient summary plot for the Maxwell distribution](/Landau_Maxwell/Results_LF_A0.5/SSP.png?raw=true "SSP")
 <!--- can use a branch with the examples to not clutter the main directory --->
 <!--- also potentially try embedding movies? --->
 

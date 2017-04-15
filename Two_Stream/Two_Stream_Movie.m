@@ -7,7 +7,7 @@ addpath('..')
 params = [4*pi, 0.5, 0, 0.2];
 
 DT = 0.01;
-NT = 100/DT+1;
+NT = 100/DT;
 NG = 128;
 N = 1e4;
 

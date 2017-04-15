@@ -53,11 +53,19 @@ function movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFram
     open(video);
     
     distribution = strrep(distribution, '_', ' ');
+	
+	% Find a suitably large value for the bound on velocity in the phase space images.  Multiply the max by 2 then round
+	% up to the nearest decimal value.
+	% This isn't an exceptional metric - it may be best to hardcode values for specific distributions.
+	vBound = 2*max(abs(vp));
+	powTen = 10^floor(-log10(vBound));
+	vBound = ceil(vBound*powTen)/powTen;
+	% vBound = 1;
     
     f = figure(1);
-    set(gcf, 'Visible', 'off');
+    %set(gcf, 'Visible', 'off');
     Title = {distribution; ['dt = ' num2str(DT) ', N = ' num2str(N, '%g') ', dx = ' num2str(dx)]; ['T = ' num2str(DT*0)]};
-    phaseSpace(xp, vp, NGp, L, Title);
+    phaseSpace(xp, vp, NGp, L, Title, vBound);
     
     saveas(f, 'images/initialPhaseSpaceflat.png');
     
@@ -121,7 +129,7 @@ function movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFram
 
         if mod(it*DT, 1) == 0
             Title = {distribution; ['dt = ' num2str(DT) ', N = ' num2str(N, '%g') ', dx = ' num2str(dx)]; ['T = ' num2str(DT*it)]};
-            phaseSpace(xp, vp, NGp, L, Title);
+            phaseSpace(xp, vp, NGp, L, Title, vBound);
             writeVideo(video, getframe(f));
             pause(0.01);
             if mod(it*DT, 5) == 0
@@ -134,7 +142,7 @@ function movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFram
 
     
     Title = {distribution; ['dt = ' num2str(DT) ', N = ' num2str(N, '%g') ', dx = ' num2str(dx)]; ['T = ' num2str(NT*DT)]};
-    phaseSpace(xp, vp, NGp, L, Title);
+    phaseSpace(xp, vp, NGp, L, Title, vBound);
     saveas(gcf, 'images/finalPhaseSpaceflat.png');
     
     close(video);
@@ -164,34 +172,33 @@ function movie_run( DT, NT, NG, N, distribution, params, saveFrameNum, movieFram
     semilogy(time(2:end), histTotEnergy);
     title({[distribution ' Total Energy']; ['dt = ' num2str(DT) ', N = ' num2str(N, '%g') ', dx = ' num2str(dx)]});
     saveas(f, 'images/totalDamping.png')
+    
     minVP
     maxVP
 end
 
-function phaseSpace(xp, vp, NG, L, Title)
+function phaseSpace(xp, vp, NG, L, Title, yBound)
     % Create a plot of the phaseSpace
     dx = L/NG;
     g1=floor(xp/dx-.5)+1;
-    dv = (max(vp) - min(vp))/NG;
+    dv = 2*yBound/NG;
     g2 = floor(vp/dv-.5)+1;
-    n = histcn([g1,g2], NG, NG);
+    n = histcn([g1,g2], linspace(0, NG+1, NG+1), linspace(-NG/2, NG/2, NG+1));
+    size(n)
     n1 = n';
-    %n1(size(n,1) + 1, size(n,2) + 1) = 0;
     
     % Wrap around
     n1(:, 1) = n1(:, 1) + n1(:, end);
     n1(:, end) = n1(:, 1);
     
-    %xb = linspace(0,L,size(n,1)+1);
-    %yb = linspace(min(vp),max(vp),size(n,1)+1);
-    xb = linspace(0,L,size(n,1));
-    yb = linspace(min(vp),max(vp),size(n,1));
+    xb = linspace(0,L,NG);
+    yb = linspace(-yBound, yBound,NG);%linspace(min(vp),max(vp),size(n,1));
     h = pcolor(xb,yb,n1);
     shading flat
     colormap(gray);
     xlabel('x','Fontsize',14);
     ylabel('v','Fontsize',14);
-    axis([0,4*pi,-5,5])
+    axis([0,L,-yBound,yBound])
     title(Title,'Fontsize',12,'FontWeight','bold');
 end
 
@@ -256,7 +263,7 @@ function [count edges mid loc] = histcn(X, varargin)
     % Bruno Luong: <brunoluong@yahoo.com>
     % Last update: 25/August/2011
 
-    if ndims(X)>2
+    if ~ismatrix(X)
         error('histcn: X requires to be an (M x N) array of M points in R^N');
     end
     DEFAULT_NBINS = 32;
@@ -302,7 +309,7 @@ function [count edges mid loc] = histcn(X, varargin)
         end
         edges{d} = ed;
         % Call histc on this dimension
-        [dummy loc(:,d)] = histc(Xd, ed, 1);
+        [~, loc(:,d)] = histc(Xd, ed, 1);
         % Use sz(d) = length(ed); to create consistent number of bins
         sz(d) = length(ed)-1;
     end % for-loop
