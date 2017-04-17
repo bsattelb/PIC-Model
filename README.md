@@ -65,8 +65,8 @@ Sets up various constant values for use in a PIC function.  Returns a PIC evalua
 Examples are available for the [Two-Stream Instability case](/Two_Stream/Two_Stream_Movie.m) and for the Landau damping case using either a [Maxwellian](/Landau_Maxwell/Landau_Maxwell_Movie.m) or [Lorentzian](/Landau_Lorentz/Landau_Lorentz_Movie.m) distribution.  Examples of images for the Maxwellian case, contained in [/Landau_Maxwell/imagesA05](/Landau_Maxwell/imagesA05), are
 
 <br>
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="50%" align="left">
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="50%" align="right">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="40%" align="left">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="40%" align="right">
 <br>
 
 # Active Subspace Sensitivity Methods
@@ -155,5 +155,7 @@ This function is meant to be used with the `Active_Subspaces` function.  It gene
 This function is meant to be used with the `Linear_Fit` function.  It generates, displays, and saves a plot of the weight vector and associated sufficient summary plot.  Optionally, the `sdev` vector can be passed in to generate errorbars on the sufficient summary plot.
 
 ## Examples
-
-![Image of the sufficient summary plot for the Maxwell distribution](/Landau_Maxwell/Results_LF_A0.5/SSP.png?raw=true "SSP")
+<br>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/SSP.png" alt="Maxwellian linear-fit SSP" width="40%" align="left">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/WV.png" alt="Maxwellian linear-fit weight vector" width="40%" align="right">
+<br>
