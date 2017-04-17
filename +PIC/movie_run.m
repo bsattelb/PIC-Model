@@ -202,6 +202,7 @@ function phaseSpace(xp, vp, NG, L, Title, yBound)
     title(Title,'Fontsize',12,'FontWeight','bold');
 end
 
+% histcn function available at <https://www.mathworks.com/matlabcentral/fileexchange/23897-n-dimensional-histogram?focused=5198474&tab=function>
 function [count edges mid loc] = histcn(X, varargin)
     % function [count edges mid loc] = histcn(X, edge1, edge2, ..., edgeN)
     %
