@@ -1,4 +1,4 @@
-function [w, output, Xs, sdev, Atrials] = sensitivity_AS(max_vals, min_vals, Nsamples, func, varargin)
+function [w, output, Xs, sdev, Atrials] = Linear_Fit(max_vals, min_vals, Nsamples, func, varargin)
     % INPUTS:
     % 'max_vals' is a vector containing the maximal values of the 
     %   parameters
