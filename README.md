@@ -64,8 +64,10 @@ Sets up various constant values for use in a PIC function.  Returns a PIC evalua
 
 Examples are available for the [Two-Stream Instability case](/Two_Stream/Two_Stream_Movie.m) and for the Landau damping case using either a [Maxwellian](/Landau_Maxwell/Landau_Maxwell_Movie.m) or [Lorentzian](/Landau_Lorentz/Landau_Lorentz_Movie.m) distribution.  Examples of images for the Maxwellian case, contained in [/Landau_Maxwell/imagesA05](/Landau_Maxwell/imagesA05), are
 
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="40%" align="left">
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="40%" align="right">
+<br>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="50%" align="left">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="50%" align="right">
+<br>
 
 # Active Subspace Sensitivity Methods
 
