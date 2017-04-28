@@ -3,6 +3,10 @@ BSD 2-Clause License
 Copyright (c) 2017, bsattelb
 All rights reserved.
 
+histcn function
+Copyright (c) 2009, Bruno Luong
+All rights reserved.
+
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
