@@ -174,7 +174,7 @@ All the distributions have linear models with code in the `<distribution>_LF.m` 
 </tr>
 </table>
 
-The [Two-Stream with no variance](/Two_Stream_No_Variance) has results for the gradient-based active subspace model.  Examples of the output are
+The [Two-Stream with no variance](/Two_Stream_No_Variance) has results for the gradient-based active subspace model.  The [Maxwellian Landau Damping case](/Landau_Maxwell) also has results, but they are not refined enough to be useable (the finite differencing step-size to approximate the gradient matrix cannot be taken small enough without making computations infeasible). Examples of the output of the Two-Stream case are
 
 <table>
 <tr>
