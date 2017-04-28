@@ -64,10 +64,16 @@ Sets up various constant values for use in a PIC function.  Returns a PIC evalua
 
 Examples are available for the [Two-Stream Instability case](/Two_Stream/Two_Stream_Movie.m) and for the Landau damping case using either a [Maxwellian](/Landau_Maxwell/Landau_Maxwell_Movie.m) or [Lorentzian](/Landau_Lorentz/Landau_Lorentz_Movie.m) distribution.  Examples of images for the Maxwellian case, contained in [/Landau_Maxwell/imagesA05](/Landau_Maxwell/imagesA05), are
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="40%" float="left">
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="40%" float="right">
-</p>
+<table>
+<tr>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="100%" float="left">
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="100%" float="right">
+</td>
+</tr>
+</table>
 
 # Active Subspace Sensitivity Methods
 
@@ -155,7 +161,52 @@ This function is meant to be used with the `Active_Subspaces` function.  It gene
 This function is meant to be used with the `Linear_Fit` function.  It generates, displays, and saves a plot of the weight vector and associated sufficient summary plot.  Optionally, the `sdev` vector can be passed in to generate errorbars on the sufficient summary plot.
 
 ## Examples
-<br>
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/SSP.png" alt="Maxwellian linear-fit SSP" width="40%" align="left">
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/WV.png" alt="Maxwellian linear-fit weight vector" width="40%" align="right">
-<br>
+All the distributions have linear models with code in the `<distribution>_LF.m` files and results in the `Results_LF` subfolders of each distribution.  Examples of linear fit results for the Maxwellian distribution are
+
+<table>
+<tr>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/SSP.png" alt="Maxwellian linear-fit SSP" width="100%">
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/WV.png" alt="Maxwellian linear-fit weight vector" width="100%">
+</td>
+</tr>
+</table>
+
+The [Two-Stream with no variance](/Two_Stream_No_Variance) has results for the gradient-based active subspace model.  Examples of the output are
+
+<table>
+<tr>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/evalues.png" alt="Two-Stream eigenvalues" width="100%" align="left">
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/HeatMap.png" alt="Two-Stream heatmap" width="100%" align="right">
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/WV1.png" alt="Two-Stream WV 1" width="100%" align="left">
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/SSP1.png" alt="Two-Stream SSP 1" width="100%" align="right">
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/WV2.png" alt="Two-Stream WV 2" width="100%" align="left">
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/SSP2.png" alt="Two-Stream SSP 2" width="100%" align="right">
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/WV3.png" alt="Two-Stream WV 3" width="100%" align="left">
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Two_Stream_No_Variance/Results_AS/SSP3.png" alt="Two-Stream SSP 3" width="100%" align="right">
+</td>
+</tr>
+</table>
