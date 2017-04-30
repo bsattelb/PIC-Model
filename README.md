@@ -67,10 +67,10 @@ Examples are available for the [Two-Stream Instability case](/Two_Stream/Two_Str
 <table>
 <tr>
 <td>
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="100%" float="left">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/images/T5PhaseSpaceflat.png" alt="Maxwellian phase-space at T=5" width="100%" float="left">
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/imagesA05/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="100%" float="right">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/images/fieldDamping.png" alt="Maxwellian L2-norm of the electric field" width="100%" float="right">
 </td>
 </tr>
 </table>
@@ -166,10 +166,10 @@ All the distributions have linear models with code in the `<distribution>_LF.m` 
 <table>
 <tr>
 <td>
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/SSP.png" alt="Maxwellian linear-fit SSP" width="100%">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF/SSP.png" alt="Maxwellian linear-fit SSP" width="100%">
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF_A0.5/WV.png" alt="Maxwellian linear-fit weight vector" width="100%">
+<img src="https://raw.githubusercontent.com/bsattelb/PIC-Model/master/Landau_Maxwell/Results_LF/WV.png" alt="Maxwellian linear-fit weight vector" width="100%">
 </td>
 </tr>
 </table>
