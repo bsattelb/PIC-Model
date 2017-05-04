@@ -26,10 +26,10 @@ h = 1e-2;
 Nsamples = 15;
 
 [evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = ...
-    Sensitivity.Active_Subspaces(max_vals, min_vals, h, Nsamples, PIC, ...
+    Sensitivity.FD_Gradient(max_vals, min_vals, h, Nsamples, PIC, ...
     'test_params', change, 'Averaging', true, 'Atolerance', 1e-3);
 
-Sensitivity.plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
+Sensitivity.plotter_FD_Gradient(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
 
 save('Results_AS/Landau_Maxwell.mat')
 

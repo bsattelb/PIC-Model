@@ -58,25 +58,26 @@ function [w, output, Xs, sdev, Atrials] = Linear_Fit(max_vals, min_vals, Nsample
     % Set base values for constant parameters
     params = max_vals;
     
+	% Convert from normalized parameters to values used in the function of interest
+	convertParams = @(x) 1/2*(diag(max_vals(test_params) - min_vals(test_params))*x + (max_vals(test_params) + min_vals(test_params))');
+	
     for jj = 1:Nsamples
         jj
         % Randomly select parameters from their spaces
         Xs(jj,:) = 2*rand(1, Nparams) - 1;
-        params(test_params) = 1/2*(diag(max_vals(test_params) - min_vals(test_params))*Xs(jj, :)' + (max_vals(test_params) + min_vals(test_params))');
+        params(test_params) = convertParams(Xs(jj, :)');
         
-        % Average the quantities of interest computed for each parameter
-        %   value
+        % Compute mean value of quantities of interest for each
+		%   given parameter value
         not_done = true;
-        ii = 1;
         while not_done
-            out(ii) = func(params);
-            not_done = Averaging&((ii<=Asamples) || (std(out)/sqrt(ii) > Atolerance));
-            ii = ii + 1;
+			Atrials(jj) = Atrials(jj) + 1;
+            out(Atrials(jj)) = func(params);
+            not_done = Averaging&((Atrials(jj)<=Asamples) || (std(out)/sqrt(Atrials(jj)) > Atolerance));
         end
         
         output(jj) = mean(out);
-        sdev(jj) = std(out)/sqrt(ii);
-        Atrials(jj) = ii-1;
+        sdev(jj) = std(out)/sqrt(Atrials(jj));
         
     end
     % Solve the linear system

@@ -27,13 +27,13 @@ Nsamples2 = 15;
 p = 17;
 
 [evalues, U, output, Xs, Xs2, graddamp, sdev, Atrials] = ...
-    Sensitivity.Local_Linear_Model(max_vals, min_vals, Nsamples, ...
-                                   Nsamples2, p, PIC, 'Averaging', true, ...
-                                   'Atolerance', 5e-4);
+    Sensitivity.Local_Linear(max_vals, min_vals, Nsamples, ...
+                             Nsamples2, p, PIC, 'Averaging', true, ...
+                             'Atolerance', 5e-4);
 
 
-Sensitivity.plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
+Sensitivity.plotter_Local_Linear(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
 
-save('Results_AS/Landau_Maxwell.mat')
+save('Results_LLRM/Landau_Maxwell.mat')
 
 rmpath('..')

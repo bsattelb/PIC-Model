@@ -14,22 +14,22 @@ max_vals = (1+alpha)*params;
 min_vals = (1-alpha)*params;
 
 DT = 0.01;
-NT = 20/DT+1;
-NG = 32;
-N = 1e3;
+NT = 70/DT+1;
+NG = 128;
+N = 1e4;
 
 PIC = PIC.PIC_setup(DT, NT, NG, N, 'Two_Stream_Basic');
 
 Nsamples = 10000;
-Nsamples2 = 100;
-p = 1000;
+Nsamples2 = 2500;
+p = 5000;
 
 [evalues, U, output, Xs, Xs2, graddamp, sdev, Atrials] = ...
-    Sensitivity.Local_Linear_Model(max_vals, min_vals, Nsamples, ...
+    Sensitivity.Local_Linear(max_vals, min_vals, Nsamples, ...
                                    Nsamples2, p, PIC, 'test_params', change);
 
-Sensitivity.plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
+Sensitivity.plotter_Local_Linear(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
 
-save('Results_AS/Two_Stream_Basic.mat')
+save('Results_LLRM/Two_Stream_Basic.mat')
 
 rmpath('..')

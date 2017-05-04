@@ -15,8 +15,8 @@ min_vals = (1-alpha)*params;
 
 DT = 0.01;
 NT = 20/DT+1;
-NG = 32;
-N = 1e3;
+NG = 128;
+N = 1e4;
 
 PIC = PIC.PIC_setup(DT, NT, NG, N, 'Two_Stream_Basic');
 

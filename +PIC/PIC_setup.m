@@ -1,4 +1,4 @@
-function PIC = PIC_setup(DT, NT, NG, N, distribution)
+function PIC = PIC_setup(DT, NT, NG, N, distribution, energyNorm)
     % Returns a particle-in-cell evaluator that convertes a parameter array
     % to some quantity of interest.  In theh parameter array, the spatial
     % grid length, L, should be the first value.
@@ -13,7 +13,8 @@ function PIC = PIC_setup(DT, NT, NG, N, distribution)
     %   Files for new distributions should be placed in those folders.  It
     %   is assumed that initilizations use the parameter vector and the 
     %   number of particles and the QOI calculation uses a vector of time 
-    %   points and the 2nd mode of the spectral norm as parameters.
+    %   points, the historical electric field (NG x NT matrix), and the spatial step size
+	%	as parameters.
     
     % Ensure that computational parameters are set up correctly
     parser = inputParser;
@@ -40,11 +41,11 @@ function PIC = PIC_setup(DT, NT, NG, N, distribution)
        cd(curDir);
     end
     
-    function damprate = damp_calc(time, histEnergy)
+    function damprate = damp_calc(time, histEnergy, dx)
         curDir = pwd;
         cd([this_dir 'QOI_calc']);
         temp = ['calc_' distribution];
-        damprate = feval(temp, time, histEnergy);
+        damprate = feval(temp, time, histEnergy, dx);
         cd(curDir);
     end
     
@@ -65,7 +66,7 @@ function PIC = PIC_setup(DT, NT, NG, N, distribution)
         [xp, vp, rho_back, Q, QM] = initialization(params, N);
         
         % history vectors and matrices
-        histSpectrum = [];
+        histEfield = [];
 
         for it=1:NT
 
@@ -95,14 +96,12 @@ function PIC = PIC_setup(DT, NT, NG, N, distribution)
            % interpolation grid -> particle and velocity update
            vp=vp+mat*QM*Eg*DT;
 
-           % take the Fourier transform of the electric field on the grid
-           NFFT = 2^nextpow2(length(Eg)); % Next power of 2 from length of Eg
-           Y = fft(Eg,NFFT)/length(Eg);
-           histSpectrum = [histSpectrum 2*abs(Y(1:NFFT/2+1))];
+		   % historical electric field
+           histEfield = [histEfield Eg];
 
         end
 
-        % Find QOI using Spectral norm
-        damprate = damp_calc(time, histSpectrum(2,:));
+        % Find QOI
+        damprate = damp_calc(time, histEfield, dx);
     end
 end

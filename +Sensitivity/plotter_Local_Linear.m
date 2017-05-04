@@ -1,14 +1,14 @@
-function plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
+function plotter_Local_Linear_Model(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs, varargin)
 
-    if ~exist('Results_AS', 'dir')
-        mkdir('Results_AS');
+    if ~exist('Results_LLRM', 'dir')
+        mkdir('Results_LLRM');
     end
 
     fig = figure;
     semilogy(1:Nparams, evalues, '.-b', 'MarkerSize', 30)
     title(['Approximate Eigenvalues, (N = ' int2str(Nsamples) ')'], 'Interpreter', 'latex','Fontsize', 16,'FontWeight','bold')
     xlim([0,Nparams+1])
-    saveas(fig, 'Results_AS/evalues.png')
+    saveas(fig, 'Results_LLRM/evalues.png')
     clear fig;
 
     for ii = 1:Nparams
@@ -22,19 +22,23 @@ function plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U
         ax = gca;
         ax.XTick = 1:Nparams;
         ax.XTickLabel = paramNames;
-        saveas(fig, ['Results_AS/WV' int2str(ii) '.png'])
+        saveas(fig, ['Results_LLRM/WV' int2str(ii) '.png'])
         clear fig;
 
-        fig = figure;
-        plot(Xs*U(:,ii), output,'ko');
-        title(['Sufficient Summary Plot ' int2str(ii) ' (N = ' int2str(Nsamples) ')'],'Interpreter','latex','Fontsize',16,'FontWeight','bold')
-        xlabel(['$w^T_' int2str(ii) ' x_j$'],'Interpreter','latex','FontSize',14)
-        ylabel(QOI,'Interpreter','latex','FontSize',14)
-        xlim([-2,2])
-        axis square;
-        grid on;
-        saveas(fig, ['Results_AS/SSP' int2str(ii) '.png'])
-        clear fig;
+		fig = figure;
+        if isempty(varargin)
+            plot(Xs*U(:,ii), output,'ko');
+        else
+            errorbar(Xs*U(:,ii), output, 2*varargin{1}, 'ko');
+        end
+		title(['Sufficient Summary Plot ' int2str(ii) ' (N = ' int2str(Nsamples) ')'],'Interpreter','latex','Fontsize',16,'FontWeight','bold')
+		xlabel(['$w^T_' int2str(ii) ' x_j$'],'Interpreter','latex','FontSize',14)
+		ylabel(QOI,'Interpreter','latex','FontSize',14)
+		xlim([-2,2])
+		axis square;
+		grid on;
+		saveas(fig, ['Results_LLRM/SSP' int2str(ii) '.png'])
+		clear fig;
     end
 
     if Nparams >= 3
@@ -49,8 +53,8 @@ function plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U
         zlim([-2,2])
         grid on;
         colorbar
-        saveas(fig, 'Results_AS/HeatMap.png')
-        saveas(fig, 'Results_AS/HeatMap.fig')
+        saveas(fig, 'Results_LLRM/HeatMap.png')
+        saveas(fig, 'Results_LLRM/HeatMap.fig')
         clear fig;
     end
 end

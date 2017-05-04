@@ -23,10 +23,10 @@ PIC = PIC.PIC_setup(DT, NT, NG, N, 'Two_Stream_Basic');
 h = 1e-6;
 Nsamples = 10000;
 
-[evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Sensitivity.Active_Subspaces(max_vals, min_vals, h, Nsamples, PIC, 'test_params', change);
+[evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Sensitivity.FD_Gradient(max_vals, min_vals, h, Nsamples, PIC, 'test_params', change);
 
-Sensitivity.plotter_Active_Subspaces(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
+Sensitivity.plotter_FD_Gradient(Nparams, Nsamples, paramNames, QOI, evalues, U, output, Xs)
 
-save('Results_AS/Two_Stream_Basic.mat')
+save('Results_FDG/Two_Stream_Basic.mat')
 
 rmpath('..')

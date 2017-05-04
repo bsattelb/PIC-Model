@@ -58,7 +58,7 @@ function [evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Active_
     Atolerance = parser.Results.Atolerance;
     
     output = zeros(Nsamples,1);            % Output of interest
-    Nparams = sum(test_params);         % Number of parameters of interest
+    Nparams = sum(test_params);            % Number of parameters of interest
     outputplus = zeros(Nparams,Nsamples);  % Perturbed output of interest
     sdev = zeros(Nparams+1, Nsamples);     % Standard deviations from averaging
     Atrials = zeros(Nparams+1, Nsamples);  % Number of trials used for averaging
@@ -70,44 +70,43 @@ function [evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Active_
     % Set base values for constant parameters
     params = max_vals;
     
+	% Convert from normalized parameters to values used in the function of interest
+	convertParams = @(x) 1/2*(diag(max_vals(test_params) - min_vals(test_params))*x + (max_vals(test_params) + min_vals(test_params))');
+	
     for jj = 1:Nsamples
         jj
-        % Randomly select parameters from their spaces
+        % Randomly select parameter values from the parameter space
         Xs(jj, :) = 2*rand(1, Nparams) - 1;
-        params(test_params) = 1/2*(diag(max_vals(test_params) - min_vals(test_params))*Xs(jj, :)' + (max_vals(test_params) + min_vals(test_params))');
+        params(test_params) = convertParams(Xs(jj, :)');
         
-        % Average the quantities of interest computed for each parameter
-        %   value
+        % Compute mean value of quantities of interest for each
+		%   given parameter value
         not_done = true;
-        ii = 1;
         while not_done
-            out(ii) = func(params);
-            not_done = Averaging&((ii<=Asamples) || (std(out)/sqrt(ii) > Atolerance));
-            ii = ii + 1;
+			Atrials(1, jj) = Atrials(1, jj) + 1;
+            out(Atrials(1, jj)) = func(params);
+            not_done = Averaging&((Atrials(1, jj)<=Asamples) || (std(out)/sqrt(Atrials(1,jj)) > Atolerance));
         end
         
         output(jj) = mean(out);
-        sdev(1, jj) = std(out)/sqrt(ii);
-        Atrials(1, jj) = ii-1;
+        sdev(1, jj) = std(out)/sqrt(Atrials(1, jj));
         
         for kk = 1:Nparams
-            % Perturb the previously selected parameters
+            % Perturb the previously selected parameters by h
             xplus = Xs(jj, :)' + h*I(:, kk);
-            paramsplus(test_params) = 1/2*(diag(max_vals(test_params) - min_vals(test_params))*xplus + (max_vals(test_params) + min_vals(test_params))');
+            paramsplus(test_params) = convertParams(xplus);
 
             not_done = true;
-            ii = 1;
             while not_done
-                outplus(ii) = func(paramsplus);
-                not_done = Averaging&((ii<=Asamples) || (std(outplus)/sqrt(ii) > Atolerance));
-                ii = ii+1;
+				Atrials(kk+1, jj) = Atrials(kk+1, jj) + 1; 
+                outplus(Atrials(kk+1, jj)) = func(paramsplus);
+                not_done = Averaging&((Atrials(kk+1, jj)<=Asamples) || (std(outplus)/sqrt(Atrials(kk+1, jj)) > Atolerance));
             end
             
             outputplus(kk, jj) = mean(outplus);
-            sdev(kk+1, jj) = std(outplus)/sqrt(ii);
-            Atrials(kk+1, jj) = ii-1;
+            sdev(kk+1, jj) = std(outplus)/sqrt(Atrials(kk+1, jj));
         end
-        % Store the results in the gradient matrix
+        % Store the FD results in the gradient matrix
         graddamp(:, jj) = (outputplus(:,jj) - output(jj))/h;
     end
     % Correct for the Monte Carlo estimation
