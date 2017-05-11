@@ -14,7 +14,7 @@ max_vals = (1+alpha)*params;
 min_vals = (1-alpha)*params;
 
 DT = 0.01;
-NT = 20/DT+1;
+NT = 70/DT+1;
 NG = 128;
 N = 1e4;
 

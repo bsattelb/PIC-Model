@@ -78,6 +78,7 @@ function [w, output, Xs, sdev, Atrials] = Linear_Fit(max_vals, min_vals, Nsample
         
         output(jj) = mean(out);
         sdev(jj) = std(out)/sqrt(Atrials(jj));
+		clear out;
         
     end
     % Solve the linear system

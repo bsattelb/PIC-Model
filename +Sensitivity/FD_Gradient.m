@@ -90,6 +90,7 @@ function [evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Active_
         
         output(jj) = mean(out);
         sdev(1, jj) = std(out)/sqrt(Atrials(1, jj));
+		clear out;
         
         for kk = 1:Nparams
             % Perturb the previously selected parameters by h
@@ -105,6 +106,7 @@ function [evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Active_
             
             outputplus(kk, jj) = mean(outplus);
             sdev(kk+1, jj) = std(outplus)/sqrt(Atrials(kk+1, jj));
+			clear outplus;
         end
         % Store the FD results in the gradient matrix
         graddamp(:, jj) = (outputplus(:,jj) - output(jj))/h;

@@ -47,7 +47,7 @@ function [evalues, U, output, Xs, Xs2, graddamp, sdev, Atrials] = Local_Linear_M
         
         output(jj) = mean(out);
         sdev(jj) = std(out)/sqrt(Atrials(jj));
-        
+        clear out;
     end
     
     for jj = 1:Nsamples2

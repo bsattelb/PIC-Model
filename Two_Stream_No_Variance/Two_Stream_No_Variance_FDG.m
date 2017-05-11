@@ -14,13 +14,13 @@ max_vals = (1+alpha)*params;
 min_vals = (1-alpha)*params;
 
 DT = 0.01;
-NT = 20/DT+1;
-NG = 32;
-N = 1e3;
+NT = 70/DT+1;
+NG = 128;
+N = 1e4;
 
 PIC = PIC.PIC_setup(DT, NT, NG, N, 'Two_Stream_Basic');
 
-h = 1e-6;
+h = 1e-4;
 Nsamples = 10000;
 
 [evalues, U, output, outputplus, Xs, graddamp, sdev, Atrials] = Sensitivity.FD_Gradient(max_vals, min_vals, h, Nsamples, PIC, 'test_params', change);

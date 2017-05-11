@@ -26,7 +26,7 @@ Nsamples = 15;
 
 [w, output, Xs, sdev, Atrials] = Sensitivity.Linear_Fit( ...
     max_vals, min_vals, Nsamples, PIC, 'test_params', change, ...
-    'Averaging', true, 'Atolerance', 5e-4);
+    'Averaging', true, 'Atolerance', 5e-3);
 
 Sensitivity.plotter_Linear_Fit(Nparams, Nsamples, paramNames, QOI, w, output, Xs, sdev)
 
